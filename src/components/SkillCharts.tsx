@@ -1,8 +1,13 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
+type ChartData = {
+  label: string;
+  value: number;
+};
+
 const SkillCharts = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [active, setActive] = useState(false);
+  const [chartData, setChartData] = useState<ChartData[]>([]);
 
   const charts = useMemo(
     () => [
@@ -22,14 +27,14 @@ const SkillCharts = () => {
     }
 
     if (!("IntersectionObserver" in window)) {
-      setActive(true);
+      setChartData(charts);
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setActive(true);
+          setChartData(charts);
           observer.disconnect();
         }
       },
@@ -39,23 +44,18 @@ const SkillCharts = () => {
     observer.observe(element);
 
     return () => observer.disconnect();
-  }, []);
+  }, [charts]);
 
   return (
-    <div
-      ref={containerRef}
-      className={`chart-grid ${active ? "is-active" : ""}`}
-      aria-label="Skill charts"
-    >
-      {charts.map((item) => (
-        <div
-          key={item.label}
-          className="chart-bar"
-          style={{ "--value": `${item.value}%` } as React.CSSProperties}
-        >
+    <div ref={containerRef} className="chart-grid" aria-label="Skill charts">
+      {chartData.map((item) => (
+        <div key={item.label} className="chart-bar">
           <span className="chart-value">{item.value}%</span>
           <div className="chart-rail">
-            <div className="chart-fill" />
+            <div
+              className="chart-fill"
+              style={{ height: `${item.value}%` }}
+            />
           </div>
           <span className="chart-label">{item.label}</span>
         </div>
