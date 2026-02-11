@@ -21,6 +21,11 @@ const SkillCharts = () => {
       return;
     }
 
+    if (!("IntersectionObserver" in window)) {
+      setActive(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -43,9 +48,15 @@ const SkillCharts = () => {
       aria-label="Skill charts"
     >
       {charts.map((item) => (
-        <div key={item.label} className="chart-bar" style={{ "--value": `${item.value}%` } as React.CSSProperties}>
+        <div
+          key={item.label}
+          className="chart-bar"
+          style={{ "--value": `${item.value}%` } as React.CSSProperties}
+        >
           <span className="chart-value">{item.value}%</span>
-          <div className="chart-fill" />
+          <div className="chart-rail">
+            <div className="chart-fill" />
+          </div>
           <span className="chart-label">{item.label}</span>
         </div>
       ))}

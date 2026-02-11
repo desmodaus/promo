@@ -544,10 +544,10 @@ a {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 18px;
-  height: 200px;
+  min-height: 220px;
   padding: 14px;
   display: grid;
-  align-content: end;
+  align-content: start;
   gap: 10px;
   box-shadow: 0 16px 26px rgba(19, 23, 34, 0.08);
   position: relative;
@@ -562,11 +562,21 @@ a {
   color: var(--muted);
 }
 
+.chart-rail {
+  height: 140px;
+  border-radius: 12px;
+  background: rgba(19, 23, 34, 0.08);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
 .chart-fill {
   height: 0;
   border-radius: 12px;
   background: linear-gradient(180deg, rgba(15, 118, 110, 0.95), rgba(249, 115, 22, 0.95));
   transition: height 1.2s ease;
+  width: 100%;
 }
 
 .chart-grid.is-active .chart-fill {
