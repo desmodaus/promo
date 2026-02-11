@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import RevealSection from "../components/RevealSection";
 import SectionNav from "../components/SectionNav";
+import SkillCharts from "../components/SkillCharts";
 import SkillTabs from "../components/SkillTabs";
 import StatCard from "../components/StatCard";
 
 const Home = () => {
   const sections = [
     { id: "skills", label: "Мої уміння" },
+    { id: "charts", label: "Графіки" },
     { id: "stack", label: "Додатковий стек" },
     { id: "about", label: "Про сайт" }
   ];
@@ -70,7 +72,17 @@ const Home = () => {
         </div>
       </RevealSection>
 
-      <RevealSection id="stack" className="section light">
+      <RevealSection id="charts" className="section light">
+        <div className="container">
+          <div className="section-head">
+            <h2>Графіки росту</h2>
+            <p>Анімовані стовпчики підіймаються при прокрутці вниз.</p>
+          </div>
+          <SkillCharts />
+        </div>
+      </RevealSection>
+
+      <RevealSection id="stack" className="section">
         <div className="container">
           <div className="section-head">
             <h2>Додатковий стек</h2>

@@ -40,6 +40,7 @@ const App = () => {
           <div>
             <h3>Frontend Portfolio</h3>
             <p>Живий приклад React, TypeScript та інженерного мислення.</p>
+            <p className="footer-author">Розробив сайт: Благуш Артем Олександрович.</p>
           </div>
           <div className="footer-links">
             <Link to="/approach">Мій підхід</Link>
