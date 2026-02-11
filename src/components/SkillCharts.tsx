@@ -38,14 +38,12 @@ const SkillCharts = () => {
     return () => observer.disconnect();
   }, []);
 
-  const generateTrendPath = (value: number, isActive: boolean) => {
-    if (!isActive) return "M0,100 L200,100";
-    
+  const generateTrendPath = (value: number) => {
     const baseHeight = 100 - (value / 100) * 75;
     const points: [number, number][] = [[0, 100]];
     
     // Генерирую зигзагообразный тренд с острыми поворотами
-    const seed = value * 17; // Используем value как seed для воспроизводимости
+    const seed = value * 17;
     for (let i = 15; i <= 200; i += 15) {
       const progress = i / 200;
       const targetHeight = 100 - progress * (100 - baseHeight);
@@ -56,10 +54,6 @@ const SkillCharts = () => {
       
       points.push([i, Math.max(15, Math.min(92, y))]);
     }
-    
-    points.push([200, baseHeight]);
-    points.push([200, 100]);
-    points.push([0, 100]);
     
     let path = `M${points[0][0]},${points[0][1]} `;
     for (let i = 1; i < points.length; i++) {
@@ -89,20 +83,23 @@ const SkillCharts = () => {
                 <stop offset="0%" stopColor="var(--brand)" stopOpacity="0.85" />
                 <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.25" />
               </linearGradient>
+              <filter id={`glow-${item.label}`} x="-50%" y="-50%" width="200%" height="200%">
+                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                <feMerge>
+                  <feMergeNode in="coloredBlur"/>
+                  <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+              </filter>
             </defs>
             <path
-              className={`chart-wave-fill ${isVisible ? 'active' : ''}`}
-              d={generateTrendPath(item.value, isVisible)}
-              fill={`url(#grad-${item.label})`}
-            />
-            <path
               className={`chart-wave-line ${isVisible ? 'active' : ''}`}
-              d={generateTrendPath(item.value, isVisible).replace(' Z', '').replace('L200,100 L0,100', '')}
+              d={generateTrendPath(item.value)}
               stroke="var(--brand)"
               strokeWidth="2.5"
               fill="none"
               strokeLinecap="round"
               strokeLinejoin="round"
+              filter={`url(#glow-${item.label})`}
             />
           </svg>
         </div>
