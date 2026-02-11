@@ -38,21 +38,34 @@ const SkillCharts = () => {
     return () => observer.disconnect();
   }, []);
 
-  const generateWavePath = (value: number, isActive: boolean) => {
+  const generateTrendPath = (value: number, isActive: boolean) => {
     if (!isActive) return "M0,100 L200,100";
     
-    const height = 100 - (value / 100) * 80;
-    const waves = 3;
-    let path = `M0,100 `;
+    const baseHeight = 100 - (value / 100) * 75;
+    const points: [number, number][] = [[0, 100]];
     
-    for (let i = 0; i <= 200; i += 10) {
-      const x = i;
-      const waveOffset = Math.sin((i / 200) * waves * Math.PI * 2) * 5;
-      const y = height + waveOffset;
-      path += `L${x},${y} `;
+    // Генерирую зигзагообразный тренд с острыми поворотами
+    const seed = value * 17; // Используем value как seed для воспроизводимости
+    for (let i = 15; i <= 200; i += 15) {
+      const progress = i / 200;
+      const targetHeight = 100 - progress * (100 - baseHeight);
+      
+      // Добавляю случайные скачки вверх для эффекта тренда
+      const pseudoRandom = Math.sin(seed + i / 30) * 5 + Math.sin(seed + i / 50) * 3;
+      const y = targetHeight - pseudoRandom;
+      
+      points.push([i, Math.max(15, Math.min(92, y))]);
     }
     
-    path += `L200,100 Z`;
+    points.push([200, baseHeight]);
+    points.push([200, 100]);
+    points.push([0, 100]);
+    
+    let path = `M${points[0][0]},${points[0][1]} `;
+    for (let i = 1; i < points.length; i++) {
+      path += `L${points[i][0]},${points[i][1]} `;
+    }
+    
     return path;
   };
 
@@ -73,18 +86,18 @@ const SkillCharts = () => {
           >
             <defs>
               <linearGradient id={`grad-${item.label}`} x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="var(--brand)" stopOpacity="0.9" />
-                <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.3" />
+                <stop offset="0%" stopColor="var(--brand)" stopOpacity="0.85" />
+                <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.25" />
               </linearGradient>
             </defs>
             <path
               className={`chart-wave-fill ${isVisible ? 'active' : ''}`}
-              d={generateWavePath(item.value, isVisible)}
+              d={generateTrendPath(item.value, isVisible)}
               fill={`url(#grad-${item.label})`}
             />
             <path
               className={`chart-wave-line ${isVisible ? 'active' : ''}`}
-              d={generateWavePath(item.value, isVisible).replace(' Z', '')}
+              d={generateTrendPath(item.value, isVisible).replace(' Z', '').replace('L200,100 L0,100', '')}
               stroke="var(--brand)"
               strokeWidth="2.5"
               fill="none"
