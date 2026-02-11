@@ -1,10 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type ChartData = {
-  label: string;
-  value: number;
-};
-
 const SkillCharts = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
