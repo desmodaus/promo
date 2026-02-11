@@ -18,19 +18,19 @@ export const skillGroups: SkillGroup[] = [
     items: [
       {
         title: "JavaScript",
-        description: "Базова логіка, DOM, інтеграції та контроль даних у UI.",
+        description: "Core logic, DOM manipulation, integrations and data control in UI.",
         level: 86,
         tags: ["ESNext", "DOM", "Async"]
       },
       {
         title: "React + Hooks",
-        description: "Компонентна архітектура, локальний стан, повторне використання UI.",
+        description: "Component architecture, local state, UI reusability and optimization.",
         level: 84,
         tags: ["useState", "useEffect", "useMemo"]
       },
       {
         title: "TypeScript",
-        description: "Типізація моделей, безпечні контракти, суворий контроль даних.",
+        description: "Type safety, model typing, secure contracts and strict data control.",
         level: 80,
         tags: ["Types", "Generics", "Interfaces"]
       }
@@ -42,19 +42,19 @@ export const skillGroups: SkillGroup[] = [
     items: [
       {
         title: "Redux Toolkit",
-        description: "Глобальний стан, передбачувана логіка, селектори і слайси.",
+        description: "Global state management, predictable logic, selectors and slices.",
         level: 78,
         tags: ["Slice", "Store", "Selectors"]
       },
       {
         title: "React Router",
-        description: "Навігація, маршрутизація, структура сторінок.",
+        description: "Navigation, routing, page structure and URL management.",
         level: 81,
         tags: ["Routes", "Layouts", "Links"]
       },
       {
         title: "REST API",
-        description: "Отримання, нормалізація та кешування даних.",
+        description: "Fetching, data normalization and caching strategies.",
         level: 76,
         tags: ["Fetch", "Axios", "Mock"]
       }
@@ -66,19 +66,19 @@ export const skillGroups: SkillGroup[] = [
     items: [
       {
         title: "SOLID + DRY",
-        description: "Модульність, відповідальність, мінімум дублювань.",
+        description: "Modularity, responsibility, minimal code duplication.",
         level: 88,
         tags: ["Architecture", "Modules"]
       },
       {
         title: "KISS + YAGNI",
-        description: "Простота, фокус на потрібних фічах.",
+        description: "Simplicity, focus on needed features.",
         level: 90,
         tags: ["Simplicity", "Focus"]
       },
       {
         title: "Git + Review",
-        description: "Прозора історія комітів та контроль якості.",
+        description: "Transparent commit history and quality control.",
         level: 82,
         tags: ["Git", "Code Review"]
       }

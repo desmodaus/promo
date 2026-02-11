@@ -7,10 +7,10 @@ import StatCard from "../components/StatCard";
 
 const Home = () => {
   const sections = [
-    { id: "skills", label: "Мої уміння" },
-    { id: "charts", label: "Графіки" },
-    { id: "stack", label: "Додатковий стек" },
-    { id: "about", label: "Про сайт" }
+    { id: "skills", label: "My Skills" },
+    { id: "charts", label: "Growth Charts" },
+    { id: "stack", label: "Tech Stack" },
+    { id: "about", label: "About Site" }
   ];
 
   return (
@@ -18,36 +18,36 @@ const Home = () => {
       <RevealSection className="hero hero-primary" id="top">
         <div className="container hero-grid">
           <div className="hero-text">
-            <p className="eyebrow">Портфоліо</p>
-            <h1>React та TypeScript у дії</h1>
+            <p className="eyebrow">Portfolio</p>
+            <h1>React and TypeScript in Action</h1>
             <p className="lead">
-              Це повноцінний демо-проєкт, який показує мої навички у React, React Hooks,
-              TypeScript та Redux Toolkit. Тут багато реальних компонентів і логіки.
+              This is a full-featured demo project showcasing my skills in React, React Hooks,
+              TypeScript, and Redux Toolkit. Lots of real components and logic.
             </p>
             <div className="hero-actions">
-              <a className="cta" href="#skills">Показати навички</a>
-              <a className="ghost" href="#stack">Перейти до стеку</a>
+              <a className="cta" href="#skills">Explore Skills</a>
+              <a className="ghost" href="#stack">Go to Stack</a>
             </div>
             <div className="meta">
               <div>
-                <span className="meta-title">Основний стек</span>
+                <span className="meta-title">Main Stack</span>
                 <span className="meta-value">React · TypeScript · Redux Toolkit</span>
               </div>
               <div>
-                <span className="meta-title">Функції</span>
+                <span className="meta-title">Features</span>
                 <span className="meta-value">Hooks · Router · API · UI</span>
               </div>
               <div>
-                <span className="meta-title">Принципи</span>
+                <span className="meta-title">Principles</span>
                 <span className="meta-value">SOLID · DRY · KISS · YAGNI</span>
               </div>
             </div>
           </div>
           <div className="hero-card">
-            <h2>Що всередині</h2>
+            <h2>What Inside</h2>
             <ul>
-              <li>Tabs, Accordion, Scroll Spy, Reveal-анімації.</li>
-              <li>Typed props та Redux store.</li>
+              <li>Tabs, Accordion, Scroll Spy, Reveal animations.</li>
+              <li>Typed props and Redux store.</li>
               <li>useMemo, useCallback, useEffect у логіці.</li>
               <li>Чистий UI з модульними стилями.</li>
             </ul>

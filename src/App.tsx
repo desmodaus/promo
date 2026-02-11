@@ -16,13 +16,13 @@ const App = () => {
           </div>
           <nav className="nav">
             <NavLink to="/" end>
-              Про сайт
+              About
             </NavLink>
-            <NavLink to="/approach">Мій підхід</NavLink>
-            <NavLink to="/stack">Стек та практики</NavLink>
+            <NavLink to="/approach">My Approach</NavLink>
+            <NavLink to="/stack">Stack & Practices</NavLink>
           </nav>
           <Link className="cta" to="/stack#contact">
-            Зв'язатися
+            Contact
           </Link>
         </div>
       </header>
@@ -39,13 +39,13 @@ const App = () => {
         <div className="container footer-content">
           <div>
             <h3>Frontend Portfolio</h3>
-            <p>Живий приклад React, TypeScript та інженерного мислення.</p>
-            <p className="footer-author">Розробив сайт: Благуш Артем Олександрович.</p>
+            <p>Live example of React, TypeScript and engineering thinking.</p>
+            <p className="footer-author">Developed by: Blagush Artem Oleksandrovych.</p>
           </div>
           <div className="footer-links">
-            <Link to="/approach">Мій підхід</Link>
-            <Link to="/stack">Стек</Link>
-            <Link to="/stack#contact">Контакт</Link>
+            <Link to="/approach">My Approach</Link>
+            <Link to="/stack">Stack</Link>
+            <Link to="/stack#contact">Contact</Link>
           </div>
         </div>
       </footer>
