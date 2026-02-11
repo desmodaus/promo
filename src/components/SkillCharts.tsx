@@ -7,7 +7,7 @@ type ChartData = {
 
 const SkillCharts = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [chartData, setChartData] = useState<ChartData[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
 
   const charts = useMemo(
     () => [
@@ -22,42 +22,41 @@ const SkillCharts = () => {
 
   useEffect(() => {
     const element = containerRef.current;
-    if (!element) {
-      return;
-    }
+    if (!element) return;
 
     if (!("IntersectionObserver" in window)) {
-      setChartData(charts);
+      setIsVisible(true);
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setChartData(charts);
+          setIsVisible(true);
           observer.disconnect();
         }
       },
-      { threshold: 0.35 }
+      { threshold: 0.1 }
     );
 
     observer.observe(element);
-
     return () => observer.disconnect();
-  }, [charts]);
+  }, []);
 
   return (
-    <div ref={containerRef} className="chart-grid" aria-label="Skill charts">
-      {chartData.map((item) => (
-        <div key={item.label} className="chart-bar">
-          <span className="chart-value">{item.value}%</span>
-          <div className="chart-rail">
-            <div
-              className="chart-fill"
-              style={{ height: `${item.value}%` }}
+    <div ref={containerRef} className="chart-grid">
+      {charts.map((item) => (
+        <div key={item.label} className="chart-item">
+          <div className="chart-header">
+            <span className="chart-label">{item.label}</span>
+            <span className="chart-percent">{item.value}%</span>
+          </div>
+          <div className="chart-container">
+            <div 
+              className={`chart-bar-fill ${isVisible ? 'active' : ''}`}
+              style={{ '--bar-height': `${item.value}%` } as React.CSSProperties}
             />
           </div>
-          <span className="chart-label">{item.label}</span>
         </div>
       ))}
     </div>
